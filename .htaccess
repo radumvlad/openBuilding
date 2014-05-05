@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# redirect www to non-www
+#RewriteCond %{HTTP_HOST} ^www\.base\.com$ [NC]
+#RewriteRule ^(.*)$ http://base.com/$1 [L,R=301]
+
+# redirect direct requests to /index.php to remove it
+# RewriteCond %{THE_REQUEST} \ /index\.php/?([^\?\ ]*)
+# RewriteRule ^ http://localhost/openBuilding/%1 [L,R=301]
+
+# internally route to /index.php
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ /index.php/$1 [PT,L]  
