@@ -7,20 +7,29 @@ class Building extends CI_Model {
         $this->load->database();
     }
 
+    function is_creator($user_id, $building_id){
+        $query = $this->db->query("select user_id from buildings where id = $building_id");
+        $res = $query->result();
+        
+        if($res[0][0] == $user_id)
+            return 1;
+        return 0;
+
+    }
+
     function get_buildings($search, $latitude, $longitude){
         
         $query = $this->db->query("select * from buildings 
-                                    where name like '%$search%' 
-                                    and latitude > $latitude - 5 
-                                    and latitude < $latitude + 5
-                                    and longitude > $longitude - 5
-                                    and longitude < $longitude + 5");
+                                    where name like '%$search%'");
         
         return $query->result();
     }
 
     function insert_building($name, $lat, $long, $user_id){
-        return $this->db->insert('buildings', array('name' => $name, 'latitude'=> $lat, 'longitude'=>$long, 'user_id'=> $user_id));
+        if( $this->db->insert('buildings', array('name' => $name, 'latitude'=> $lat, 'longitude'=>$long, 'user_id'=> $user_id)))
+            return $this->db->insert_id();
+        
+        return 0;
     }
 
     function update_building($id, $name, $lat, $long){
@@ -65,6 +74,13 @@ class Building extends CI_Model {
         //todo
         return true;
     }
+
+    function check_floor_nr($building_id, $floor_nr){
+        //todo
+        return true;
+    }
+
+
 
     function check_session($user_id, $building_id){
         //todo

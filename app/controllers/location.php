@@ -5,6 +5,8 @@ class Location extends CI_Controller {
     public function __construct(){        
         parent::__construct();
         $this->load->model("Building");
+
+        $user_id = 1;
     }
 
     private function isJson($string) {
@@ -26,45 +28,46 @@ class Location extends CI_Controller {
 	public function add(){
         //validate input
         if(!isset($_POST['name']) || $_POST['name'] == '')
-              die('{"status":0, "msg":"No name input"}');
+              die('{"status":0, "msg":"No or wrong name input"}');
         if(!isset($_POST['latitude']) || !is_numeric($_POST['latitude']))
-              die('{"status":0, "msg":"No latitude input"}');
+              die('{"status":0, "msg":"No or wrong latitude input"}');
         if(!isset($_POST['longitude']) || !is_numeric($_POST['longitude']))
-              die('{"status":0, "msg":"No longitude input"}');
+              die('{"status":0, "msg":"No or wrong longitude input"}');
 
-        if(! $this->Building->insert_building($_POST['name'] , $_POST['latitude'], $_POST['longitude'], 1) == 1)
+        $insert_id = $this->Building->insert_building($_POST['name'] , $_POST['latitude'], $_POST['longitude'], 1);
+        if($insert_id == 0)
             die('{"status":0, "msg":"Database error"}');
 
-        die('{"status":1, "msg":""}');
+        die('{"status":1, "msg":"", "building_id":' . $insert_id . '}');
     }
 
     public function edit(){
         //validate input
         if(!isset($_POST['name']) || $_POST['name'] == '')
-              die('{"status":0, "msg":"No name input"}');
+              die('{"status":0, "msg":"No or wrong name input"}');
         if(!isset($_POST['latitude']) || !is_numeric($_POST['latitude']))
-              die('{"status":0, "msg":"No latitude input"}');
+              die('{"status":0, "msg":"No or wrong latitude input"}');
         if(!isset($_POST['longitude']) || !is_numeric($_POST['longitude']))
-              die('{"status":0, "msg":"No longitude input"}');
+              die('{"status":0, "msg":"No or wrong longitude input"}');
         if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']))
-              die('{"status":0, "msg":"No id input"}');
+              die('{"status":0, "msg":"No or wrong id input"}');
 
         //check input
         if(! $this->Building->check_building_id($_POST['building_id']))
             die('{"status":0, "msg":"Wrong id input"}');
 
-        //permissions?
+        $this->load->model("User");
+        if(!is_admin($user_id) && !is_creator($user_id, $building_id))
+            die('{"status":0, "msg":"No permission"}');
 
         if(! $this->Building->update_building($_POST['id'], $_POST['name'] , $_POST['latitude'], $_POST['longitude']) == 1){
             die('{"status":0, "msg":"Database error"}');
         }
 
-        $this->Building->end_session(1, $_POST['building_id']);
-
         die('{"status":1, "msg":""}');
     }
 
-    public function start_blocking(){
+    public function start_edit(){
         //validate input
         if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
               die('{"status":0, "msg":"No or wrong id input"}');
@@ -72,11 +75,25 @@ class Location extends CI_Controller {
         if(! $this->Building->check_building_available($_POST['building_id']))
             die('{"status":0, "msg":"Not Available"}');
 
-        $this->Building->start_session(1, $_POST['building_id']);
+        $this->Building->start_session($user_id, $_POST['building_id']);
 
 
         die('{"status":1, "msg":""}');
     }
+
+    public function end_edit(){
+
+
+       
+
+        //copy from session
+
+
+        $this->Building->end_session($user_id, $_POST['building_id']);
+
+        die('{"status":1, "msg":""}');
+    }
+
 
     public function get_floor(){
         //validate input
@@ -89,23 +106,25 @@ class Location extends CI_Controller {
     public function add_floor(){
         //validate input
         if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']))
-              die('{"status":0, "msg":"No building_id input"}');
+              die('{"status":0, "msg":"No or wrong building_id input"}');
         if(!isset($_POST['floor_number']) || !is_numeric($_POST['floor_number']))
-              die('{"status":0, "msg":"No floor_number input"}');
-        if(!isset($_POST['json']) || $_POST['json'] == '' || ! $this->isJson($_POST['json']))
-              die('{"status":0, "msg":"No json input"}');
+              die('{"status":0, "msg":"No or wrong floor_number input"}');
+        
 
         //check input
         if(!$this->Building->check_building_id($_POST['building_id']))
             die('{"status":0, "msg":"Wrong building_id input"}');
 
-        if(!$this->Building->check_session(1, $_POST['building_id']))
+        if(!$this->Building->check_session($user_id, $_POST['building_id']))
             die('{"status":0, "msg":"Wrong building_id input"}');
+
+        //todo:check floor number
+        if(!$this->Building->check_floor_nr($_POST['building_id'], $_POST['floor_number']))
+            die('{"status":0, "msg":"floor_nr already exist"}');
 
         //other permissions?
 
-
-        if(! $this->Building->insert_floor($_POST['building_id'], $_POST['floor_number'], $_POST['json']) == 1)
+        if(! $this->Building->insert_floor($_POST['building_id'], $_POST['floor_number'], '{}') == 1)
             die('{"status":0, "msg":"Database error"}');
         
         die('{"status":1, "msg":""}');
@@ -114,18 +133,18 @@ class Location extends CI_Controller {
     public function edit_floor(){
         //validate input
         if(!isset($_POST['floor_id']) || !is_numeric($_POST['floor_id']))
-              die('{"status":0, "msg":"No building_id input"}');
+              die('{"status":0, "msg":"No or wrong building_id input"}');
         if(!isset($_POST['floor_number']) || !is_numeric($_POST['floor_number']))
-              die('{"status":0, "msg":"No floor_number input"}');
+              die('{"status":0, "msg":"No or wrong floor_number input"}');
         if(!isset($_POST['json']) || $_POST['json'] == '' || ! $this->isJson($_POST['json']))
-              die('{"status":0, "msg":"No json input"}');
+              die('{"status":0, "msg":"No or wrong json input"}');
 
         //check input
         if(!$this->Building->check_building_id($_POST['building_id']))
             die('{"status":0, "msg":"Wrong building_id input"}');
 
         if(!$this->Building->check_session(1, $_POST['building_id']))
-            die('{"status":0, "msg":"Wrong building_id input"}');
+            die('{"status":0, "msg":"U sure u can do that?"}');
 
         //other permissions?
 
