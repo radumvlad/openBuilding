@@ -2,6 +2,9 @@
 <html>
 <head>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	
+	<link href="<?php echo asset_url();?>img/cladire0.png" rel="shortcut icon">
+
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>stylesheets/main.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>stylesheets/bootstrap.min.css">
 
@@ -11,8 +14,12 @@
 	<script>
 
 
+		var is_logged = -1;
+		var user = 0;
+
 		function fb_login(){
-			FB.login(function(response) {
+			if(is_logged == -1){
+				FB.login(function(response) {
 				if (response.authResponse) {
 					FB.api('/me', function(response) {
 						get_data();
@@ -23,13 +30,29 @@
 				}
 			}, {
 			});
+			}
+			else
+				get_data();
+			
+		}
+
+		function fb_logout(){
+			is_logged = 0;
+			user = 0;
+
+			$('#user_dropdown').hide();
+			$('#add_b').hide();
+			$('#user_connect').show();
 		}
 
 
 		function get_data(){
+
 			FB.api('/me', function(response) {
-				$('#user_actions').show();
+				is_logged = 1;
+
 				$('#user_dropdown').show();
+				$('#add_b').show();
 				$('#user_connect').hide();
 				$('#user_name').html(response.name + '<b class="caret"></b>');
 
@@ -38,12 +61,12 @@
 					url: "<?php echo base_url();?>index.php/users/set_user_id",
 					processData: true,
 					context: "application/json",
-					data: {fb_id: response.id, email: response.email},
+					data: {fb_id: response.id, email: response.email, name:response.name},
 					success: function(data) {
 						data = JSON.parse(data);
 
 						if(data.status == 1)
-							user = 1;
+							user = data.id;
 					},
 					error: function() {
 						console.log("failure");
