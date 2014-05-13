@@ -1,15 +1,21 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ0LnpERZeLc_ih7LCcVRQp0fvyMtbY1Q&sensor=true"></script>
 <script type="text/javascript">
-    var map, newMarker = null, markers, search = "", zoomLevel = 2;
-
-
+    var map, newMarker = null, editMarker = null, markers, search = "", zoomLevel = 2;
+    var infowindow = new google.maps.InfoWindow({});
 
     $("#searchInput").keypress(function(e) {
         if(e.which == 13) {
             get_markers($("#searchInput").val());
         }
     });
+
+    function getPosFromArr(id){
+        for(var i = 0; i < markers.length; i++){
+            if(markers[i].id == id)
+                return i;
+        }
+    }
 
     function initialize() {
         markers = new Array();
@@ -26,6 +32,12 @@
 
         get_markers(search);
         google.maps.event.addListener(map, 'zoom_changed', zoom_change);
+
+        google.maps.event.addListener(infowindow, 'closeclick', function(){
+            if(editMarker != null)
+                markers.push(editMarker);
+            this.close();
+        });
     }
 
     function zoom_change(){
@@ -39,6 +51,10 @@
             }
 
             if(newMarker != null){
+                newMarker.setIcon('<?php echo asset_url();?>img/cladire'+zoomLevel+'.png');
+            }
+
+            if(editMarker != null){
                 newMarker.setIcon('<?php echo asset_url();?>img/cladire'+zoomLevel+'.png');
             }
         }
@@ -69,11 +85,16 @@
                         map: map,
                         icon: '<?php echo asset_url();?>img/cladire'+zoomLevel+'.png',
                         title: data[i].name,
-                        id: data[i].id
+                        id: data[i].id,
+                        owner_id: data[i].user_id,
+                        owner: data[i].owner,
+                        iwContent:'<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px"><label>Name:</label><span id="textSpan">'+data[i].name+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:none" type="text" value="'+data[i].name+'"></div><div class="form-group" style="margin-bottom:0px"><label>Author:</label><a href="#">'+data[i].owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>'+data[i].updated_date+'</span></div><div class="row"><a id="e_b" onclick="edit_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a><a id="d_b" style="display:none" onclick="delete_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+data[i].id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>',
                     });
 
+
                     google.maps.event.addListener(marker, 'click', function() {
-                        document.location = "<?php echo base_url();?>index.php/home/map/" + this.id;
+                        infowindow.setContent(this.iwContent);
+                        infowindow.open(map,this);
                     });
 
                     markers.push(marker);
@@ -86,40 +107,53 @@
         });
     }
 
-    function add_marker()
-    {
-
+    function add_marker(){
         newMarker = new google.maps.Marker({
             clickable: true,
             position: map.getCenter(),
             map: map,
             icon: '<?php echo asset_url();?>img/cladire'+zoomLevel+'.png',
-            draggable: true
+            draggable: true,
+            iwContent: '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px"><label>Name:</label><input id="textMarker" class="form-control input-sm pull-right" style="width:190px;display:inline" type="text" value=""></div><div class="row"><a id="u_b" onclick="create_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>'
+
+        });
+
+
+        google.maps.event.addListener(newMarker, 'click', function() {
+            infowindow.setContent(this.iwContent);
+            infowindow.open(map,this);
         });
 
         google.maps.event.trigger(map, 'resize');
     }
 
-    function done_marker()
-    {
+    function create_marker(){
+        var text = $("#textMarker").val();
+
+        if(text == ""){
+            $("#formM").addClass("has-error");
+            return false;
+        }
 
         $.ajax({
             type: "post",
             url: "<?php echo base_url();?>index.php/location/add",
             processData: true,
             context: "application/json",
-            data: {name: "name", latitude: newMarker.getPosition().lat(), longitude:newMarker.getPosition().lng()},
+            data: {name: text, latitude: newMarker.getPosition().lat(), longitude:newMarker.getPosition().lng()},
             success: function(data) {
                 data = JSON.parse(data);
 
-                newMarker.title = "name";
+                newMarker.setTitle(text);
                 newMarker.id = data.building_id;
-                newMarker.draggable = false;
-                google.maps.event.addListener(newMarker, 'click', function() {
-                    document.location = "<?php echo base_url();?>index.php/home/map/" + newMarker.id;
-                });
+                newMarker.setDraggable(false);
+                newMarker.owner_id = user;
+                newMarker.owner = data.owner;
+                newMarker.iwContent = '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px"><label>Name:</label><span>'+text+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:inline" type="hidden" value=""></div><div class="form-group" style="margin-bottom:0px"><label>Author:</label><a href="#">'+data.owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>a few seconds ago</span></div><div class="row"><a id="e_b" onclick="edit_marker('+newMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a><a id="d_b" style="display:none" onclick="delete_marker('+newMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+newMarker.id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>';
+
                 google.maps.event.trigger(map, 'resize');
 
+                infowindow.close();
 
                 markers.push(newMarker);
                 newMarker = null;
@@ -129,9 +163,90 @@
                 console.log("failure");
             }
         });
+    }
 
+    function edit_marker(id){
+        var loc = getPosFromArr(id);
+
+        editMarker = markers[loc];
+        editMarker.setDraggable(true);
+        markers.splice(loc, 1);
+
+        $("#textMarker").show();
+        $("#textSpan").hide();
+
+
+        $("#e_b").hide();
+        $("#u_b").show();
+        $("#d_b").show();
+        $("#o_b").hide();
 
     }
+
+    function delete_marker(id){
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url();?>index.php/location/delete",
+            processData: true,
+            context: "application/json",
+            data: {building_id: id},
+            success: function(data) {
+
+                editMarker.setVisible(false);
+                editMarker = null;
+                infowindow.close();
+            },
+            error: function() {
+                console.log("failure");
+            }
+        });
+    }
+
+    function update_marker(){
+        var text = $("#textMarker").val();
+
+        if(text == ""){
+            $("#formM").addClass("has-error");
+            return false;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url();?>index.php/location/edit",
+            processData: true,
+            context: "application/json",
+            data: {name: text, latitude: editMarker.getPosition().lat(), longitude: editMarker.getPosition().lng(), building_id: editMarker.id},
+            success: function(data) {
+                
+
+
+                editMarker.setTitle(text);
+                editMarker.setDraggable(false);
+                editMarker.iwContent = '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px"><label>Name:</label><span>'+text+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:inline" type="hidden" value=""></div><div class="form-group" style="margin-bottom:0px"><label>Author:</label><a href="#">'+editMarker.owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>a few seconds ago</span></div><div class="row"><a id="e_b" onclick="edit_marker('+editMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a><a id="d_b" style="display:none" onclick="delete_marker('+editMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+editMarker.id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>';
+
+                google.maps.event.trigger(map, 'resize');
+
+                markers.push(editMarker);
+                editMarker = null;
+
+                $("#textMarker").hide();
+                $("#textSpan").show();
+                $("#textSpan").text(text);
+
+                $("#e_b").show();
+                $("#u_b").hide();
+                $("#d_b").hide();
+                $("#o_b").show();
+
+            },
+            error: function() {
+                console.log("failure");
+            }
+        });
+    }
+
+
     google.maps.event.addDomListener(window, 'load', initialize);
 
 
