@@ -2,11 +2,15 @@
 
 class Location extends CI_Controller {
 
+    public $user_id;
+
     public function __construct(){        
         parent::__construct();
+        
         $this->load->model("Building");
-
-        $user_id = 1;
+        $this->load->library('info');
+        
+        $this->user_id = $this->info->user_id;
     }
 
     private function isJson($string) {
@@ -26,9 +30,6 @@ class Location extends CI_Controller {
     }
 
 	public function add(){
-
-        $user_id = 1;//testing purposes
-
         //validate input
         if(!isset($_POST['name']) || $_POST['name'] == '')
               die('{"status":0, "msg":"No or wrong name input"}');
@@ -37,17 +38,15 @@ class Location extends CI_Controller {
         if(!isset($_POST['longitude']) || !is_numeric($_POST['longitude']))
               die('{"status":0, "msg":"No or wrong longitude input"}');
 
-        $insert_id = $this->Building->insert_building($_POST['name'] , $_POST['latitude'], $_POST['longitude'], $user_id);
+        $insert_id = $this->Building->insert_building($_POST['name'] , $_POST['latitude'], $_POST['longitude'], $this->user_id);
         if($insert_id == 0)
             die('{"status":0, "msg":"Database error"}');
 
-        die('{"status":1, "msg":"", "building_id":' . $insert_id . ', "owner": "Radu Vlad"}');
+        $username = $this->info->username;
+        die('{"status":1, "msg":"", "building_id":' . $insert_id . ', "owner": "'.$username.'"}');
     }
 
     public function edit(){
-
-        $user_id = 1;//testing purposes
-
         //validate input
         if(!isset($_POST['name']) || $_POST['name'] == '')
               die('{"status":0, "msg":"No or wrong name input"}');
@@ -63,7 +62,7 @@ class Location extends CI_Controller {
             die('{"status":0, "msg":"Wrong id input"}');
 
         $this->load->model("User");
-        if(! $this->User->is_admin($user_id) && ! $this->Building->is_creator($user_id, $_POST['building_id']))
+        if(! $this->User->is_admin($this->user_id) && ! $this->Building->is_creator($this->user_id, $_POST['building_id']))
             die('{"status":0, "msg":"No permission"}');
 
         if(! $this->Building->update_building($_POST['building_id'], $_POST['name'] , $_POST['latitude'], $_POST['longitude']) == 1){
@@ -74,9 +73,6 @@ class Location extends CI_Controller {
     }
 
     public function delete(){
-
-        $user_id = 1;//testing purposes
-
         if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']))
             die('{"status":0, "msg":"No or wrong id input"}');
 
@@ -85,7 +81,7 @@ class Location extends CI_Controller {
             die('{"status":0, "msg":"Wrong id input"}');
 
         $this->load->model("User");
-        if(! $this->User->is_admin($user_id) && ! $this->Building->is_creator($user_id, $_POST['building_id']))
+        if(! $this->User->is_admin($this->user_id) && ! $this->Building->is_creator($this->user_id, $_POST['building_id']))
             die('{"status":0, "msg":"No permission"}');
 
         if(! $this->Building->delete_building($_POST['building_id']) == 1){

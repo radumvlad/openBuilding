@@ -5,6 +5,8 @@ class Home extends CI_Controller {
     public function __construct(){        
         parent::__construct();
         
+        $this->load->library('info');
+        $user_id = $this->info->user_id;
     }
 
 
@@ -23,8 +25,5 @@ class Home extends CI_Controller {
        
     }
     
-    public function fb_callback(){
-        
-    }
 }
 

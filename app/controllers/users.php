@@ -4,11 +4,12 @@ class Users extends CI_Controller {
 
     public function __construct(){        
         parent::__construct();
+        
         $this->load->model("User");
-
+        $this->load->library('info');
     }
 
-    public function set_user_id(){
+    public function login(){
 
         if(!isset($_POST['email']) || $_POST['email'] == '')
             die('{"status":0, "msg":"No or wrong email input"}');
@@ -25,7 +26,14 @@ class Users extends CI_Controller {
         if($id == 0)
             die('{"status":0, "msg":"Database error"}');
 
+        $this->info->setData($id, $_POST['name']);
+
         die('{"status":1, "msg":"", "id":' . $id . '}');
+    }
+
+    public function logout(){
+        $this->info->destroyData();
+        die('{"status":1, "msg":""}');
     }
 
     

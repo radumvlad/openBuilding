@@ -37,36 +37,64 @@
 		}
 
 		function fb_logout(){
-			is_logged = 0;
-			user = 0;
+			$.ajax({
+					type: "post",
+					url: "<?php echo base_url();?>index.php/users/logout",
+					processData: true,
+					context: "application/json",
+					success: function(data) {
+						data = JSON.parse(data);
+						if(data.status == 1){
+							is_logged = 0;
+							user = 0;
 
-			$('#user_dropdown').hide();
-			$('#add_b').hide();
-			$('#user_connect').show();
+							$('#user_dropdown').hide();
+							$('#add_b').hide();
+							$('#user_connect').show();	
+						}
+					},
+					error: function() {
+						console.log("failure");
+					}
+				});
 		}
 
 
 		function get_data(){
 
 			FB.api('/me', function(response) {
-				is_logged = 1;
-
-				$('#user_dropdown').show();
-				$('#add_b').show();
-				$('#user_connect').hide();
-				$('#user_name').html(response.name + '<b class="caret"></b>');
+				
 
 				$.ajax({
 					type: "post",
-					url: "<?php echo base_url();?>index.php/users/set_user_id",
+					url: "<?php echo base_url();?>index.php/users/login",
 					processData: true,
 					context: "application/json",
 					data: {fb_id: response.id, email: response.email, name:response.name},
 					success: function(data) {
 						data = JSON.parse(data);
 
-						if(data.status == 1)
+						if(data.status == 1){
 							user = data.id;
+							is_logged = 1;
+
+							$('#user_dropdown').show();
+							$('#add_b').show();
+							$('#user_connect').hide();
+							$('#user_name').html(response.name + '<b class="caret"></b>');
+
+							if (typeof markers !== 'undefined') {
+								for(var i = 0; i < markers.length; i++){
+									if(markers[i].owner_id == user){
+										$("#actionDiv").html(markers[i].iwContent);
+										$("#e_b").show();
+										markers[i].iwContent = $("#actionDiv").html();
+										$("#actionDiv").html("");
+									}
+								}
+							}
+
+						}
 					},
 					error: function() {
 						console.log("failure");

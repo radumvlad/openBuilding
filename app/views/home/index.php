@@ -58,7 +58,7 @@
             }
 
             if(editMarker != null){
-                newMarker.setIcon('<?php echo asset_url();?>img/cladire'+zoomLevel+'.png');
+                editMarker.setIcon('<?php echo asset_url();?>img/cladire'+zoomLevel+'.png');
             }
         }
     }
@@ -82,6 +82,18 @@
 
                 for (var i = 0; i < data.length; i++) {
 
+                    var str = '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px;height:30px"><label>Name:</label><span id="textSpan">'+data[i].name+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:none" type="text" value="'+data[i].name+'"></div><div class="form-group" style="margin-bottom:0px"><label>Author:</label><a href="#">'+data[i].owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>'+data[i].updated_date+'</span></div><div class="row">';
+
+                    if(user == data[i].user_id){
+                        str = str + '<a id="e_b" onclick="edit_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a>';
+                    }
+                    else
+                    {
+                        str = str + '<a id="e_b" style="display:none" onclick="edit_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a>';
+                    }
+
+                    str = str + '<a id="d_b" style="display:none" onclick="delete_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+data[i].id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>';
+
                     var marker = new google.maps.Marker({
                         clickable: true,
                         position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
@@ -91,7 +103,7 @@
                         id: data[i].id,
                         owner_id: data[i].user_id,
                         owner: data[i].owner,
-                        iwContent:'<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px;height:30px"><label>Name:</label><span id="textSpan">'+data[i].name+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:none" type="text" value="'+data[i].name+'"></div><div class="form-group" style="margin-bottom:0px"><label>Author:</label><a href="#">'+data[i].owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>'+data[i].updated_date+'</span></div><div class="row"><a id="e_b" onclick="edit_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a><a id="d_b" style="display:none" onclick="delete_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+data[i].id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>',
+                        iwContent:str,
                     });
 
 
@@ -152,7 +164,8 @@
                 newMarker.setDraggable(false);
                 newMarker.owner_id = user;
                 newMarker.owner = data.owner;
-                newMarker.iwContent = '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px"><label>Name:</label><span id="textSpan">'+text+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:none" type="text" value="'+text+'"></div><div class="form-group" style="margin-bottom:0px;height:30px"><label>Author:</label><a href="#">'+data.owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>'+'a few seconds ago'+'</span></div><div class="row"><a id="e_b" onclick="edit_marker('+newMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a><a id="d_b" style="display:none" onclick="delete_marker('+newMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+newMarker.id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>'
+
+                newMarker.iwContent = '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px;height:30px"><label>Name:</label><span id="textSpan">'+text+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:none" type="text" value="'+text+'"></div><div class="form-group" style="margin-bottom:0px;height:30px"><label>Author:</label><a href="#">'+data.owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>'+'a few seconds ago'+'</span></div><div class="row"><a id="e_b" onclick="edit_marker('+newMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a><a id="d_b" style="display:none" onclick="delete_marker('+newMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+newMarker.id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>'
 
                 google.maps.event.trigger(map, 'resize');
 
@@ -221,9 +234,6 @@
             context: "application/json",
             data: {name: text, latitude: editMarker.getPosition().lat(), longitude: editMarker.getPosition().lng(), building_id: editMarker.id},
             success: function(data) {
-                
-
-
                 editMarker.setTitle(text);
                 editMarker.setDraggable(false);
                 editMarker.iwContent = '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px;height:30px"><label>Name:</label><span>'+text+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:inline" type="hidden" value=""></div><div class="form-group" style="margin-bottom:0px"><label>Author:</label><a href="#">'+editMarker.owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>a few seconds ago</span></div><div class="row"><a id="e_b" onclick="edit_marker('+editMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a><a id="d_b" style="display:none" onclick="delete_marker('+editMarker.id+');" href="javascript:void(0)" class="btn btn-sm btn-danger pull-left">Delete</a><a id="o_b" href="<?php echo base_url();?>index.php/home/map/'+editMarker.id+'" class="btn btn-sm btn-success pull-right">Open</a><a id="u_b" style="display:none" onclick="update_marker();" href="javascript:void(0)" class="btn btn-sm btn-info pull-right">Save</a></div></div></div>';
@@ -259,3 +269,5 @@
 
 
 <div id="map-canvas" style="width: 100%;"></div>
+
+<div id="actionDiv"></div>
