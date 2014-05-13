@@ -1,5 +1,5 @@
 <body>
- <div role="navigation" class="navbar navbar-inverse navbar-fixed-top" style="position:relative; margin-bottom:0px">
+ <div id="myNav" role="navigation" class="navbar navbar-inverse navbar-fixed-top" style="position:relative; margin-bottom:0px">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="javascript:void(0)">OpenBuilding</a>

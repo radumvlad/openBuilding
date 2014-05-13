@@ -15,7 +15,7 @@ class Home extends CI_Controller {
         $this->load->view('shared/_footer');
     }
     
-    public function map(){
+    public function map($id = 0){
         $this->load->view('shared/_head');
         $this->load->view('shared/_header');
         $this->load->view('home/map');
