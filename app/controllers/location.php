@@ -26,6 +26,9 @@ class Location extends CI_Controller {
     }
 
 	public function add(){
+
+        $user_id = 1;//testing purposes
+
         //validate input
         if(!isset($_POST['name']) || $_POST['name'] == '')
               die('{"status":0, "msg":"No or wrong name input"}');
@@ -34,7 +37,7 @@ class Location extends CI_Controller {
         if(!isset($_POST['longitude']) || !is_numeric($_POST['longitude']))
               die('{"status":0, "msg":"No or wrong longitude input"}');
 
-        $insert_id = $this->Building->insert_building($_POST['name'] , $_POST['latitude'], $_POST['longitude'], 1);
+        $insert_id = $this->Building->insert_building($_POST['name'] , $_POST['latitude'], $_POST['longitude'], $user_id);
         if($insert_id == 0)
             die('{"status":0, "msg":"Database error"}');
 
@@ -42,6 +45,9 @@ class Location extends CI_Controller {
     }
 
     public function edit(){
+
+        $user_id = 1;//testing purposes
+
         //validate input
         if(!isset($_POST['name']) || $_POST['name'] == '')
               die('{"status":0, "msg":"No or wrong name input"}');
@@ -61,6 +67,28 @@ class Location extends CI_Controller {
             die('{"status":0, "msg":"No permission"}');
 
         if(! $this->Building->update_building($_POST['id'], $_POST['name'] , $_POST['latitude'], $_POST['longitude']) == 1){
+            die('{"status":0, "msg":"Database error"}');
+        }
+
+        die('{"status":1, "msg":""}');
+    }
+
+    public function delete(){
+
+        $user_id = 1;//testing purposes
+
+        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']))
+            die('{"status":0, "msg":"No or wrong id input"}');
+
+        //check input
+        if(! $this->Building->check_building_id($_POST['building_id']))
+            die('{"status":0, "msg":"Wrong id input"}');
+
+        $this->load->model("User");
+        if(!is_admin($user_id) && !is_creator($user_id, $building_id))
+            die('{"status":0, "msg":"No permission"}');
+
+        if(! $this->Building->delete_building($_POST['id']) == 1){
             die('{"status":0, "msg":"Database error"}');
         }
 

@@ -18,9 +18,9 @@ class Building extends CI_Model {
     }
 
     function get_buildings($search, $latitude, $longitude){
-        
-        $query = $this->db->query("select * from buildings 
-                                    where name like '%$search%'");
+        $query = $this->db->query("select b.*, u.name as owner from buildings b
+                                    join users u on b.user_id = u.id
+                                    where b.name like '%$search%'");
         
         return $query->result();
     }
@@ -34,6 +34,10 @@ class Building extends CI_Model {
 
     function update_building($id, $name, $lat, $long){
         return $this->db->update('buildings', array('name' => $name, 'latitude'=> $lat, 'longitude'=>$long), array('id' => $id)); 
+    }
+
+    function delete_building($id){
+        return $this->db->delete('buildings', array('id' => $id)); 
     }
 
     function get_floor($building_id, $floor_nr){

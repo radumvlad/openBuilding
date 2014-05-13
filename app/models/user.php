@@ -26,8 +26,8 @@ class User extends CI_Model {
 			return 0;
 	}
 
-	public function add($fb_id, $email){
-		if( $this->db->insert('users', array('fb_id' => $fb_id, 'email'=> $email)))
+	public function add($fb_id, $email, $name){
+		if( $this->db->insert('users', array('fb_id' => $fb_id, 'email' => $email, 'name' => $name)))
 			return $this->db->insert_id();
 
 		return 0;
