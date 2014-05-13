@@ -16,7 +16,11 @@ class Home extends CI_Controller {
     }
     
     public function map(){
+        $this->load->view('shared/_head');
+        $this->load->view('shared/_header');
         $this->load->view('home/map');
+        $this->load->view('shared/_footer');
+       
     }
     
     public function fb_callback(){

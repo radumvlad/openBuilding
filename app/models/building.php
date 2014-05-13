@@ -8,10 +8,10 @@ class Building extends CI_Model {
     }
 
     function is_creator($user_id, $building_id){
-        $query = $this->db->query("select user_id from buildings where id = $building_id");
+        $query = $this->db->query("select * from buildings where id = $building_id and user_id = $user_id");
         $res = $query->result();
         
-        if($res[0][0] == $user_id)
+        if(count($res)>0)
             return 1;
         return 0;
 
@@ -26,7 +26,10 @@ class Building extends CI_Model {
     }
 
     function insert_building($name, $lat, $long, $user_id){
-        if( $this->db->insert('buildings', array('name' => $name, 'latitude'=> $lat, 'longitude'=>$long, 'user_id'=> $user_id)))
+
+        $now = new DateTime();
+        $now->setTimezone(new DateTimeZone('Europe/Bucharest'));
+        if( $this->db->insert('buildings', array('name' => $name, 'latitude'=> $lat, 'longitude'=>$long, 'user_id' => $user_id, 'created_date' => $now->format('Y-m-d H:i:s') )))
             return $this->db->insert_id();
         
         return 0;

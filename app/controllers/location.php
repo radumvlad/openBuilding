@@ -41,7 +41,7 @@ class Location extends CI_Controller {
         if($insert_id == 0)
             die('{"status":0, "msg":"Database error"}');
 
-        die('{"status":1, "msg":"", "building_id":' . $insert_id . '}');
+        die('{"status":1, "msg":"", "building_id":' . $insert_id . ', "owner": "Radu Vlad"}');
     }
 
     public function edit(){
@@ -63,10 +63,10 @@ class Location extends CI_Controller {
             die('{"status":0, "msg":"Wrong id input"}');
 
         $this->load->model("User");
-        if(!is_admin($user_id) && !is_creator($user_id, $building_id))
+        if(! $this->User->is_admin($user_id) && ! $this->Building->is_creator($user_id, $_POST['building_id']))
             die('{"status":0, "msg":"No permission"}');
 
-        if(! $this->Building->update_building($_POST['id'], $_POST['name'] , $_POST['latitude'], $_POST['longitude']) == 1){
+        if(! $this->Building->update_building($_POST['building_id'], $_POST['name'] , $_POST['latitude'], $_POST['longitude']) == 1){
             die('{"status":0, "msg":"Database error"}');
         }
 
@@ -85,10 +85,10 @@ class Location extends CI_Controller {
             die('{"status":0, "msg":"Wrong id input"}');
 
         $this->load->model("User");
-        if(!is_admin($user_id) && !is_creator($user_id, $building_id))
+        if(! $this->User->is_admin($user_id) && ! $this->Building->is_creator($user_id, $_POST['building_id']))
             die('{"status":0, "msg":"No permission"}');
 
-        if(! $this->Building->delete_building($_POST['id']) == 1){
+        if(! $this->Building->delete_building($_POST['building_id']) == 1){
             die('{"status":0, "msg":"Database error"}');
         }
 
