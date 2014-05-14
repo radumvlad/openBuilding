@@ -2,6 +2,12 @@
 <html>
 <head>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<?php 
+	if(isset($title)) 
+		echo '<title>'.$title.'</title>';
+	else
+		echo '<title>OpenBuilding</title>';
+		?>
 	
 	<link href="<?php echo asset_url();?>img/cladire0.png" rel="shortcut icon">
 
