@@ -73,12 +73,8 @@ class Location extends CI_Controller {
     }
 
     public function delete(){
-        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']))
-            die('{"status":0, "msg":"No or wrong id input"}');
-
-        //check input
-        if(! $this->Building->check_building_id($_POST['building_id']))
-            die('{"status":0, "msg":"Wrong id input"}');
+        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
+              die('{"status":0, "msg":"No or wrong id input"}');
 
         $this->load->model("User");
         if(! $this->User->is_admin($this->user_id) && ! $this->Building->is_creator($this->user_id, $_POST['building_id']))
@@ -105,16 +101,35 @@ class Location extends CI_Controller {
         die('{"status":1, "msg":""}');
     }
 
-    public function end_edit(){
+    public function accept_edit(){
+        //validate input
+        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
+              die('{"status":0, "msg":"No or wrong id input"}');
 
 
-       
+        $this->load->model("User");
+        if(! $this->User->is_admin($this->user_id) && ! $this->Building->is_creator($this->user_id, $_POST['building_id']))
+            die('{"status":0, "msg":"No permission"}');
 
-        //copy from session
 
+        $this->Building->copy_from_session($_POST['building_id']);
+        $this->Building->end_session($_POST['building_id']);
 
-        $this->Building->end_session($user_id, $_POST['building_id']);
+        die('{"status":1, "msg":""}');
+    }
 
+    public function decline_edit(){
+        //validate input
+        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
+              die('{"status":0, "msg":"No or wrong id input"}');
+
+        $this->load->model("User");
+        if(! $this->User->is_admin($this->user_id) && ! $this->Building->is_creator($this->user_id, $_POST['building_id']))
+            die('{"status":0, "msg":"No permission"}');
+
+        //delete from session
+        $this->Building->delete_from_session($_POST['building_id']);
+        
         die('{"status":1, "msg":""}');
     }
 
@@ -177,11 +192,6 @@ class Location extends CI_Controller {
             die('{"status":0, "msg":"Database error"}');
 
         die('{"status":1, "msg":""}');
-    }
-    
-    public function test(){
-        echo $this->Building->test();
-        
     }
 
 }
