@@ -24,7 +24,8 @@
         <li id="user_dropdown" class="dropdown" style="display:none">
           <a id="user_name" data-toggle="dropdown" class="dropdown-toggle" role="button" href="#"></a>
           <ul aria-labelledby="drop3" role="menu" class="dropdown-menu">
-            <li><a href="<?php echo base_url();?>index.php/home/admin">My buildings</a></li>
+            <li><a href="<?php echo base_url();?>index.php/home/profile">Profile</a></li>
+            <li><a href="<?php echo base_url();?>index.php/home/administrate">My buildings</a></li>
             <li><a onclick="fb_logout();" href="javascript:void(0)">Logout</a></li>
           </ul>
         </li>
