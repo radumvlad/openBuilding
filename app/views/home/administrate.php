@@ -93,7 +93,8 @@
 			$start = min(min(array_keys($var['initial'])), min(array_keys($var['after'])));
 
 			for($i = $start; $i <= $end; $i++){
-				?>data1 = JSON.parse('<?php echo (isset($var["initial"][$i]))?($var["initial"][$i]):("[]"); ?>');
+				?>
+				data1 = JSON.parse('<?php echo (isset($var["initial"][$i]))?($var["initial"][$i]):("[]"); ?>');
 				b1 = new Building('<?php echo "bi" . $key . "_" . $i;?>');
 				b1.setInitialObjects(data1);
 

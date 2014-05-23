@@ -71,6 +71,8 @@ class Building extends CI_Model {
         
         $temp2 = $query->result();
 
+        $res['arr'] = [];
+
         foreach($temp1 as $var){
             $res['arr'][$var->id]['initial'][$var->floor_number] = $var->floor_json;
             $res['arr'][$var->id]['name'] = $var->name;
