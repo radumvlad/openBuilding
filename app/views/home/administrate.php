@@ -39,7 +39,9 @@
 
 	</div>
 </div>
-<script src="<?php echo asset_url();?>javascripts/oblib.js"></script>
+<script src="<?php echo asset_url();?>javascripts/objects.js"></script>
+<script src="<?php echo asset_url();?>javascripts/obview.js"></script>
+
 <script type="text/javascript">
 
 	function accept(id){
