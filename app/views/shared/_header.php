@@ -6,19 +6,7 @@
     </div>
     <div class="collapse navbar-collapse">
 
-      <?php
-      if(isset($search) && $search == true){
-        ?>
-        <ul class="nav navbar-nav">
-          <div class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" id="searchInput" style="width:500px" class="form-control input-sm" placeholder="Search">
-            </div>
-          </div>
-        </ul>
-        <?php 
-      }
-      ?>
+      <?php if(isset($left_nav)) echo $left_nav; ?>
       <ul class="nav navbar-nav pull-right">
         <li id="user_connect"><a href="javascript:fb_login();" style="padding-bottom:13px"><img src="<?php echo asset_url();?>img/fb_button.png"></a></li>
         <li id="user_dropdown" class="dropdown" style="display:none">
@@ -30,7 +18,7 @@
           </ul>
         </li>
       </ul>
-      <?php if(isset($actions)) echo $actions;?>
+      <?php if(isset($right_nav)) echo $right_nav;?>
     </div>
   </div>
 </div>
