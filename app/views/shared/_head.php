@@ -12,7 +12,7 @@
 	<link href="<?php echo asset_url();?>img/cladire0.png" rel="shortcut icon">
 
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>stylesheets/main.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js" type="text/javascript"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
