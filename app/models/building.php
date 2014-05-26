@@ -113,18 +113,40 @@ class Building extends CI_Model {
         return $this->db->delete('buildings', array('id' => $id)); 
     }
 
+    function get_building_info($id){
+        $query = $this->db->query("select b.id, b.name, f.floor_json, f.floor_number from buildings b
+                                    left join floors f on (b.id = f.building_id and f.floor_number = b.initial_floor_number)
+                                    where b.id = " . $id);
+
+        return $query->row();
+    }
+
     function get_floor($building_id, $floor_nr){
 
         $query = $this->db->query("select * from floors 
-            where building_id = $building_id
-            and floor_number = $floor_nr");
+            where building_id = ".$building_id."
+            and floor_number = ".$floor_nr);
 
-        $res = $query->result();
+        $res = $query->row();
         if(count($res) > 0)
-            return $res[0];
+            return $res->floor_json;
         else
-            return new stdClass();
+            return '[]';
     }
+
+    function get_floor_edit($session_id, $building_id, $floor_nr){
+        $query = $this->db->query("select * from session_floors 
+            where building_id = ".$building_id."
+            and floor_number = ".$floor_nr."
+            and session_id = ".$session_id);
+
+        $res = $query->row();
+        if(count($res) > 0)
+            return $res->floor_json;
+        else
+            return '[]';
+    }
+
 
     function exists_floor($building_id, $nr){
         $query = $this->db->get_where('floors', array('building_id' => $building_id, 'floor_number' => $nr));
@@ -134,7 +156,7 @@ class Building extends CI_Model {
             $res = $temp[0];
             return $res->id;
         }
-        return false;
+        return 0;
     }
 
     function insert_floor($building_id, $nr , $json){
@@ -143,6 +165,24 @@ class Building extends CI_Model {
     
     function update_floor($id, $json){
         return $this->db->update('floors', array('floor_json'=>$json), array('id' => $id)); 
+    }
+
+    function exists_sfloor($session_id, $building_id, $nr){
+        $query = $this->db->get_where('session_floors', array('session_id' => $session_id, 'building_id' => $building_id, 'floor_number' => $nr));
+        $res = $query->row();
+        
+        if(count($res)>0){
+            return $res->id;
+        }
+        return 0;
+    }
+
+    function insert_sfloor($session_id, $building_id, $nr , $json){
+        return $this->db->insert('session_floors', array('session_id' => $session_id,'building_id' => $building_id, 'floor_json'=> $json, 'floor_number'=> $nr));
+    }
+    
+    function update_sfloor($id, $json){
+        return $this->db->update('session_floors', array('floor_json'=>$json), array('id' => $id)); 
     }
 
     function start_session($user_id, $building_id){
@@ -164,7 +204,6 @@ class Building extends CI_Model {
             else
                 $this->insert_floor($building_id, $row->floor_number, $row->floor_json);
         }
-
     }
 
     function delete_from_session($building_id){
@@ -192,13 +231,39 @@ class Building extends CI_Model {
     }
 
 
-    function check_session($user_id, $building_id){
-        //todo
-        return true;
+    function get_session($user_id, $building_id){
+        $query = $this->db->get_where('sessions', array('active' => 1, 'building_id'=> $building_id, 'user_id'=> $user_id)); 
+        $res = $query->row();
+        if(count($res)>0)
+            return $res->id;
+        return 0;
     }
 
+    function is_editable($building_id, $user_id){
+        $query = $this->db->query('select * from sessions 
+                                    where building_id = ' . $building_id . ' 
+                                    and active = 1 
+                                    and user_id != ' . $user_id);
+        
 
+        $res = $query->result();
+        if(count($res) > 0)
+            return false;
+        return true;        
+    }
 
+    function is_editing($building_id, $user_id){
+        $query = $this->db->query('select * from sessions 
+                                    where building_id = ' . $building_id . ' 
+                                    and active = 1 
+                                    and user_id = ' . $user_id);
+        
+
+        $res = $query->result();
+        if(count($res) > 0)
+            return true;
+        return false;        
+    }
 }
 
 

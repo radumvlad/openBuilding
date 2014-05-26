@@ -92,13 +92,16 @@ class Location extends CI_Controller {
         if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
               die('{"status":0, "msg":"No or wrong id input"}');
 
-        if(! $this->Building->check_building_available($_POST['building_id']))
+        if(! $this->Building->is_editable($_POST['building_id'], $this->user_id))
             die('{"status":0, "msg":"Not Available"}');
 
-        $this->Building->start_session($user_id, $_POST['building_id']);
+        if($this->Building->is_editing($_POST['building_id'], $this->user_id))
+            die('{"status":1,"new":0, "msg":""}');
+
+        $this->Building->start_session($this->user_id, $_POST['building_id']);
 
 
-        die('{"status":1, "msg":""}');
+        die('{"status":1,"new":1, "msg":""}');
     }
 
     public function accept_edit(){
@@ -133,65 +136,102 @@ class Location extends CI_Controller {
         die('{"status":1, "msg":""}');
     }
 
+    public function save_floor(){
+        //todo
+
+        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
+              die('{"status":0, "msg":"No or wrong id input"}');
+
+        if(!isset($_POST['floor_json']) || ! $this->isJson($_POST['floor_json']) )
+              die('{"status":0, "msg":"No or wrong id input"}');
+        if(!isset($_POST['floor_number']) || !is_numeric($_POST['floor_number']))
+              die('{"status":0, "msg":"No or wrong floor_number input"}');
+
+        $sess = $this->Building->get_session($this->user_id, $_POST['building_id']);
+
+        if($sess == 0)
+            die('{"status":0, "msg":"No permission"}');
+
+
+        $id = $this->Building->exists_sfloor($sess, $_POST['building_id'], $_POST['floor_number']);
+
+        if($id != 0)
+            $this->Building->update_sfloor($id, $_POST['floor_json']);
+        else
+            $this->Building->insert_sfloor($sess, $_POST['building_id'], $_POST['floor_number'] , $_POST['floor_json']);
+
+
+        $this->load->model("User");
+        if($this->User->is_admin($this->user_id) || $this->Building->is_creator($this->user_id, $_POST['building_id'])){
+            $this->Building->copy_from_session($_POST['building_id']);
+        }
+
+        die('{"status":1, "msg":""}');
+    }    
+
+    public function end_session(){
+        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
+              die('{"status":0, "msg":"No or wrong id input"}');
+
+        $sess = $this->Building->get_session($this->user_id, $_POST['building_id']);
+
+        if($sess == 0)
+            die('{"status":0, "msg":"No permission"}');
+
+        $this->load->model("User");
+        if($this->User->is_admin($this->user_id) || $this->Building->is_creator($this->user_id, $_POST['building_id'])){
+            $this->Building->end_session($_POST['building_id']);
+        }
+        
+        die('{"status":1, "msg":""}');
+    }
+
+    public function has_edited_floor(){
+        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']) || ! $this->Building->check_building_id($_POST['building_id']))
+              die('{"status":0, "msg":"No or wrong id input"}');
+
+        if(!isset($_POST['floor_number']) || !is_numeric($_POST['floor_number']))
+              die('{"status":0, "msg":"No or wrong floor_number input"}');
+
+        $sess = $this->Building->get_session($this->user_id, $_POST['building_id']);
+
+        if($sess == 0)
+            die('{"status":0, "msg":"No permission"}');
+
+
+        $id = $this->Building->exists_sfloor($sess, $_POST['building_id'], $_POST['floor_number']);
+
+        if($id == 0)
+            die('{"status":1, "has":0, "msg":""}');
+
+        die('{"status":1, "has":1, "msg":""}');
+    }
+
 
     public function get_floor(){
-        //validate input
         $lid = isset($_POST['building_id'])?$_POST['building_id']:0;
-        $nr = isset($_POST['number'])?$_POST['nr']:0;
+        $nr = isset($_POST['number'])?$_POST['number']:0;
 
-        die(json_encode($this->Building->get_floor($lid, $nr)));
+        if(! $this->Building->check_building_id($lid))
+            die('{"status":0, "msg":"Wrong id input"}');
+
+        
+        die($this->Building->get_floor($lid, $nr));
     }
 
-    public function add_floor(){
-        //validate input
-        if(!isset($_POST['building_id']) || !is_numeric($_POST['building_id']))
-              die('{"status":0, "msg":"No or wrong building_id input"}');
-        if(!isset($_POST['floor_number']) || !is_numeric($_POST['floor_number']))
-              die('{"status":0, "msg":"No or wrong floor_number input"}');
-        
+    public function get_floor_edit(){
+        $lid = isset($_POST['building_id'])?$_POST['building_id']:0;
+        $nr = isset($_POST['number'])?$_POST['number']:0;
 
-        //check input
-        if(!$this->Building->check_building_id($_POST['building_id']))
-            die('{"status":0, "msg":"Wrong building_id input"}');
+        if(! $this->Building->check_building_id($lid))
+            die('{"status":0, "msg":"Wrong id input"}');
 
-        if(!$this->Building->check_session($user_id, $_POST['building_id']))
-            die('{"status":0, "msg":"Wrong building_id input"}');
+        $sess = $this->Building->get_session($this->user_id, $lid);
 
-        //todo:check floor number
-        if(!$this->Building->check_floor_nr($_POST['building_id'], $_POST['floor_number']))
-            die('{"status":0, "msg":"floor_nr already exist"}');
+        if($sess == 0)
+            die('{"status":0, "msg":"No permission"}');
 
-        //other permissions?
-
-        if(! $this->Building->insert_floor($_POST['building_id'], $_POST['floor_number'], '{}') == 1)
-            die('{"status":0, "msg":"Database error"}');
-        
-        die('{"status":1, "msg":""}');
-    }
-
-    public function edit_floor(){
-        //validate input
-        if(!isset($_POST['floor_id']) || !is_numeric($_POST['floor_id']))
-              die('{"status":0, "msg":"No or wrong building_id input"}');
-        if(!isset($_POST['floor_number']) || !is_numeric($_POST['floor_number']))
-              die('{"status":0, "msg":"No or wrong floor_number input"}');
-        if(!isset($_POST['json']) || $_POST['json'] == '' || ! $this->isJson($_POST['json']))
-              die('{"status":0, "msg":"No or wrong json input"}');
-
-        //check input
-        if(!$this->Building->check_building_id($_POST['building_id']))
-            die('{"status":0, "msg":"Wrong building_id input"}');
-
-        if(!$this->Building->check_session(1, $_POST['building_id']))
-            die('{"status":0, "msg":"U sure u can do that?"}');
-
-        //other permissions?
-
-
-        if(! $this->Building->update_floor(1, '{a}') == 1)
-            die('{"status":0, "msg":"Database error"}');
-
-        die('{"status":1, "msg":""}');
+        die($this->Building->get_floor_edit($sess, $lid, $nr));
     }
 
 }

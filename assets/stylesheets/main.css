@@ -7,3 +7,33 @@ body {
 	margin: 0; 
 	padding: 0;
 }
+
+.tool {
+	cursor:pointer;
+	background-color:white;
+	padding:5px;
+	margin-right:5px
+}
+
+.selected-tool {
+	border:4px solid blue;
+}
+
+.divider-vertical {
+	height: 100%;
+	margin: 0 5px;
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #f2f2f2;
+}
+
+.navbar-map{
+	background-color:#E3E4E3;
+	width=100%;
+	height:40px;
+}
+
+.floor-css {
+	font-size:40px;
+	color:#9C9C9C;
+	position:absolute !important;
+}
