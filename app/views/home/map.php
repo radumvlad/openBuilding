@@ -350,7 +350,9 @@ function getFloor(delta){
 	}
 }
 
-function change(action, ths = "") {
+function change(action, ths) {
+
+	ths = typeof ths !== 'undefined' ? ths : "";
 
 	$(".tool").each(function(){
 		$(this).removeClass('selected-tool');
