@@ -20,8 +20,10 @@
 	<script>
 
 
-		var is_logged = -1;
-		var user = 0;
+		var is_logged = <?php echo $logged; ?>;
+		var user = <?php echo $user_id; ?>;
+
+
 
 		function fb_login(){
 			if(is_logged == -1){
@@ -34,8 +36,7 @@
 				else {
 					console.log('User cancelled login or did not fully authorize.');
 				}
-			}, {
-			});
+			}, {scope: 'public_profile,email'});
 			}
 			else
 				get_data();
@@ -63,6 +64,8 @@
 						console.log("failure");
 					}
 				});
+
+			//FB.logout();
 		}
 
 
