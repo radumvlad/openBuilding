@@ -49,17 +49,17 @@ $active_group = 'default';
 $active_record = TRUE;
 
 
-//$heroku_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$heroku_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-//$db['default']['hostname'] = $heroku_url["host"];
-//$db['default']['username'] = $heroku_url["user"];
-//$db['default']['password'] = $heroku_url["pass"];
-//$db['default']['database'] = substr($heroku_url["path"],1);
+$db['default']['hostname'] = $heroku_url["host"];
+$db['default']['username'] = $heroku_url["user"];
+$db['default']['password'] = $heroku_url["pass"];
+$db['default']['database'] = substr($heroku_url["path"],1);
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'openbuilding';
+//$db['default']['hostname'] = 'localhost';
+//$db['default']['username'] = 'root';
+//$db['default']['password'] = '';
+//$db['default']['database'] = 'openbuilding';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
