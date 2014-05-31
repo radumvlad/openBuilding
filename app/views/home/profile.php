@@ -84,7 +84,6 @@
 		}
 
 		for($i = 0; $i < count($contributed); $i++){ ?>
-			?>
 			
 			data = JSON.parse('<?php echo (isset($contributed[$i]->floor_json))?($contributed[$i]->floor_json):("[]"); ?>');
 			b = new Building('<?php echo "b" . $contributed[$i]->id;?>');
