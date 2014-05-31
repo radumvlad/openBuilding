@@ -12,14 +12,9 @@ class Test extends CI_Controller {
 
 
     public function db(){
-    	$heroku_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-
-    	echo $heroku_url["host"] . '<br>';
-    	echo $heroku_url["user"] . '<br>';
-    	echo $heroku_url["pass"] . '<br>';
-    	echo substr($heroku_url["path"],1) . '<br>';
-
-    	$this->load->model("Test");
+    	
+    	$this->load->model("Test2");
+    	echo $this->Test2->tr();
+    	echo 'xx';
     }
 }
