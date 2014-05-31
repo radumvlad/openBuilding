@@ -22,6 +22,7 @@
 
 		var is_logged = <?php echo $logged; ?>;
 		var user = <?php echo $user_id; ?>;
+		var role = <?php echo $role; ?>;
 
 
 
@@ -94,7 +95,7 @@
 
 							if (typeof markers !== 'undefined') {
 								for(var i = 0; i < markers.length; i++){
-									if(markers[i].owner_id == user){
+									if(markers[i].owner_id == user || role == 1){
 										$("#actionDiv").html(markers[i].iwContent);
 										$("#e_b").show();
 										markers[i].iwContent = $("#actionDiv").html();

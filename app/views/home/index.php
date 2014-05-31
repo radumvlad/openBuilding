@@ -84,7 +84,7 @@
 
                     var str = '<div class="container" style="width:250px"><div class="form-horizontal" role="form"><div id="formM" class="form-group" style="margin-bottom:0px;height:30px"><label>Name:</label><span id="textSpan">'+data[i].name+'</span><input id="textMarker" class="form-control input-sm pull-right" style="width:140px;display:none" type="text" value="'+data[i].name+'"></div><div class="form-group" style="margin-bottom:0px"><label>Author:</label><a href="<?php echo base_url();?>index.php/home/profile/' + data[i].user_id + '">'+data[i].owner+'</a></div><div class="form-group" style="margin-bottom:0px"><label>Updated at:</label><span>'+data[i].updated_date+'</span></div><div class="row">';
 
-                    if(user == data[i].user_id){
+                    if(user == data[i].user_id || role == 1){
                         str = str + '<a id="e_b" onclick="edit_marker('+data[i].id+');" href="javascript:void(0)" class="btn btn-sm btn-info pull-left">Edit</a>';
                     }
                     else

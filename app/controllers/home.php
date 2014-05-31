@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends CI_Controller {
-    public $user_id, $logged;
+    public $user_id, $logged, $role;
 
     public function __construct(){        
         parent::__construct();
@@ -13,6 +13,9 @@ class Home extends CI_Controller {
             $this->logged = -1;
         else
             $this->logged = 1;
+
+        $this->load->model('User');
+        $this->role = $this->User->is_admin($this->user_id);
     }
 
 
@@ -22,7 +25,7 @@ class Home extends CI_Controller {
 
         $right_nav = '<button style="display:none" id="add_b" type="button" onclick="add_marker();" class="btn btn-info btn-sm navbar-btn pull-right">Add a building</button>';
 
-        $this->load->view('shared/_head', array('title' => 'OpenBuilding', 'logged'=> $this->logged, 'user_id' => $this->user_id));
+        $this->load->view('shared/_head', array('title' => 'OpenBuilding', 'logged'=> $this->logged, 'user_id' => $this->user_id, 'role' => $this->role));
         $this->load->view('shared/_header', array('left_nav' => $left_nav, 'right_nav' => $right_nav));
         $this->load->view('home/index');
         $this->load->view('shared/_footer');
@@ -44,7 +47,7 @@ class Home extends CI_Controller {
         $info = $this->Building->get_building_info($id);
 
 
-        $this->load->view('shared/_head', array('title' => $info->name, 'logged'=> $this->logged, 'user_id' => $this->user_id));
+        $this->load->view('shared/_head', array('title' => $info->name, 'logged'=> $this->logged, 'user_id' => $this->user_id, 'role' => $this->role));
         $this->load->view('shared/_header', array('left_nav' => $left_nav, 'right_nav'=> $actions_html));
         $this->load->view('home/map', array('info' => $info ));
         $this->load->view('shared/_footer');
@@ -56,14 +59,14 @@ class Home extends CI_Controller {
         if($id == 0)
             $id = $this->user_id;
 
-        $this->load->model('User');
+        
 
         if(!$this->User->exist($id))
             show_404();
         
         $res = $this->User->get_user_info($id);
 
-        $this->load->view('shared/_head', array('title' => $res['info']->name, 'logged'=> $this->logged, 'user_id' => $this->user_id));
+        $this->load->view('shared/_head', array('title' => $res['info']->name, 'logged'=> $this->logged, 'user_id' => $this->user_id, 'role' => $this->role));
         $this->load->view('shared/_header');
         $this->load->view('home/profile', $res);
         $this->load->view('shared/_footer');
@@ -72,7 +75,6 @@ class Home extends CI_Controller {
     public function administrate(){
 
         $this->load->model('Building');
-        $this->load->model('User');
 
         if($this->User->is_admin($this->user_id))
             $res = $this->Building->get_to_administrate_admin();
@@ -81,7 +83,7 @@ class Home extends CI_Controller {
 
 
 
-        $this->load->view('shared/_head', array('title' => 'Administrate', 'logged'=> $this->logged, 'user_id' => $this->user_id));
+        $this->load->view('shared/_head', array('title' => 'Administrate', 'logged'=> $this->logged, 'user_id' => $this->user_id, 'role' => $this->role));
         $this->load->view('shared/_header');
         $this->load->view('home/administrate',$res);
         $this->load->view('shared/_footer');

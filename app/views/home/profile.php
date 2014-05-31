@@ -88,7 +88,7 @@
 			
 			data = JSON.parse('<?php echo (isset($contributed[$i]->floor_json))?($contributed[$i]->floor_json):("[]"); ?>');
 			b = new Building('<?php echo "b" . $contributed[$i]->id;?>');
-			b.setInitialObjects(data1);
+			b.setInitialObjects(data);
 
 			<?php 
 		}
