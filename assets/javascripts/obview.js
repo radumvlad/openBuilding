@@ -1,19 +1,19 @@
 ﻿var buildingList = new Array();
 
 var exitDoorImg = new Image(20, 20);
-exitDoorImg.src = 'http://localhost:88/openBuilding/assets/img/exit.png';
+exitDoorImg.src = 'http://openbuilding.herokuapp.com/assets/img/exit.png';
 
 var doorImg = new Image(20, 20);
-doorImg.src = 'http://localhost:88/openBuilding/assets/img/door.png';
+doorImg.src = 'http://openbuilding.herokuapp.com/assets/img/door.png';
 
 var stairsUpImg = new Image(20, 20);
-stairsUpImg.src = 'http://localhost:88/openBuilding/assets/img/scari_sus.png';
+stairsUpImg.src = 'http://openbuilding.herokuapp.com/assets/img/scari_sus.png';
 
 var stairsDownImg = new Image(20, 20);
-stairsDownImg.src = 'http://localhost:88/openBuilding/assets/img/scari_jos.png';
+stairsDownImg.src = 'http://openbuilding.herokuapp.com/assets/img/scari_jos.png';
 
 var stairsImg = new Image(20, 20);
-stairsImg.src = 'http://localhost:88/openBuilding/assets/img/scari_b.png';
+stairsImg.src = 'http://openbuilding.herokuapp.com/assets/img/scari_b.png';
 
 var Building = (function () {
     function Building(str, extended) {
