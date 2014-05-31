@@ -246,6 +246,7 @@ function save(){
 }
 
 function hasEditedFloor(floor){
+	var result = false;
 	$.ajax({
 		type: "post",
 		url: "<?php echo base_url();?>index.php/location/has_edited_floor",
@@ -256,14 +257,14 @@ function hasEditedFloor(floor){
 		success: function(data) {
 			data = JSON.parse(data);
 			if(data.has == 1)
-				return true;
-
-			return false;
+				result = true;
 		},
 		error: function() {
 			console.log("failure");
 		}
 	});
+
+	return result;
 }
 
 function getFloor(delta){
@@ -279,7 +280,7 @@ function getFloor(delta){
 
 		$("#move_tool").addClass('selected-tool');
 
-		if(hasEditedFloor(new_floor) == true) {
+		if(hasEditedFloor(new_floor)) {
 			$.ajax({
 				type: "post",
 				url: "<?php echo base_url();?>index.php/location/get_floor_edit",
