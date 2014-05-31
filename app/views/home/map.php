@@ -251,6 +251,7 @@ function hasEditedFloor(floor){
 		url: "<?php echo base_url();?>index.php/location/has_edited_floor",
 		processData: true,
 		context: "application/json",
+		async: false,
 		data: {building_id: bid, floor_number: floor},
 		success: function(data) {
 			data = JSON.parse(data);
