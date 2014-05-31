@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://openbuilding.herokuapp.com/';
+$config['base_url']	= 'http://localhost:88/openBuilding/';
 
 /*
 |--------------------------------------------------------------------------

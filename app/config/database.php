@@ -49,6 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $heroku_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+var_dump($heroku_url);
+die();
 
 $db['default']['hostname'] = $heroku_url["host"];
 $db['default']['username'] = $heroku_url["user"];

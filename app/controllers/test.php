@@ -19,5 +19,7 @@ class Test extends CI_Controller {
     	echo $heroku_url["user"] . '<br>';
     	echo $heroku_url["pass"] . '<br>';
     	echo substr($heroku_url["path"],1) . '<br>';
+
+    	
     }
 }
