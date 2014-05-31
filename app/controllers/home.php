@@ -7,15 +7,18 @@ class Home extends CI_Controller {
         parent::__construct();
         
         $this->load->library('info');
+        $this->load->model('User');
+
         $this->user_id = $this->info->user_id;
 
-        if($this->user_id == 0)
+        if($this->user_id == 0){
             $this->logged = -1;
-        else
+            $this->role = 0;
+        }
+        else{
             $this->logged = 1;
-
-        $this->load->model('User');
-        $this->role = $this->User->is_admin($this->user_id);
+            $this->role = $this->User->is_admin($this->user_id);
+        }        
     }
 
 
