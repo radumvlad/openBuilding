@@ -279,7 +279,7 @@ function getFloor(delta){
 
 		$("#move_tool").addClass('selected-tool');
 
-		if(hasEditedFloor(new_floor)) {
+		if(hasEditedFloor(new_floor) == true) {
 			$.ajax({
 				type: "post",
 				url: "<?php echo base_url();?>index.php/location/get_floor_edit",
