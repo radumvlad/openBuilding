@@ -2,7 +2,7 @@
  <div id="myNav" role="navigation" class="navbar navbar-inverse navbar-fixed-top" style="position:relative; margin-bottom:0px">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="<?php echo base_url();?>"><span class="glyphicon glyphicon-search"></span> OpenBuilding</a>
+      <a class="navbar-brand" href="<?php echo base_url();?>"><span class="glyphicon glyphicon-home"></span> OpenBuilding</a>
     </div>
     <div class="collapse navbar-collapse">
 
