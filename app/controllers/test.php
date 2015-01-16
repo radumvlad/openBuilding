@@ -17,4 +17,9 @@ class Test extends CI_Controller {
     	echo $this->Test2->tr();
     	echo 'xx';
     }
+
+    public function clear(){
+        $this->load->library('info');
+        $this->info->destroyData();
+    }
 }
