@@ -1,5 +1,5 @@
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCarSX2WaGGxvPGmpPGQ335tN6WhKR9nM8&sensor=true"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCarSX2WaGGxvPGmpPGQ335tN6WhKR9nM8"></script>
 <script type="text/javascript">
     var map, newMarker = null, editMarker = null, markers, search = "", zoomLevel = 2;
     var infowindow = new google.maps.InfoWindow({});

@@ -15,8 +15,8 @@
 |
 */
 
-//$config['base_url']	= 'http://localhost:88/openBuilding/';
-$config['base_url']	= 'http://openbuilding.herokuapp.com/';
+$config['base_url']	= 'http://localhost/openbuildingserver/';
+// $config['base_url']	= 'http://openbuilding.herokuapp.com/';
 
 /*
 |--------------------------------------------------------------------------

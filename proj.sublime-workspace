@@ -1,0 +1,743 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"selecte",
+				"selectedField"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"curre",
+				"currentUser"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"cook",
+				"cookie"
+			],
+			[
+				"user",
+				"userId"
+			],
+			[
+				"end",
+				"end_ts"
+			],
+			[
+				"be",
+				"begin_ts"
+			],
+			[
+				"field",
+				"field_id"
+			],
+			[
+				"crea",
+				"creator"
+			],
+			[
+				"rese",
+				"reservation"
+			],
+			[
+				"reser",
+				"reservation"
+			],
+			[
+				"Us",
+				"USER_ROLES"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"exit",
+				"existing_players"
+			],
+			[
+				"array",
+				"array"
+			],
+			[
+				"number",
+				"number_of_players"
+			],
+			[
+				"is_in",
+				"is_int"
+			],
+			[
+				"start",
+				"start_timestamp"
+			],
+			[
+				"fie",
+				"fieldReservation"
+			],
+			[
+				"fiel",
+				"fieldReservationUsers"
+			],
+			[
+				"existi",
+				"existing_players"
+			],
+			[
+				"begin",
+				"begin_timestamp"
+			],
+			[
+				"acti",
+				"actionName"
+			],
+			[
+				"datetim",
+				"datetime"
+			],
+			[
+				"emai",
+				"emailConfirmation"
+			],
+			[
+				"findFir",
+				"findFirstById"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"auth",
+				"authCode"
+			],
+			[
+				"base",
+				"base64_decode"
+			],
+			[
+				"RETUR",
+				"return"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"Book",
+				"bookafield"
+			],
+			[
+				"que",
+				"query_text"
+			],
+			[
+				"acc",
+				"acc_id"
+			],
+			[
+				"pres",
+				"presentation_id"
+			],
+			[
+				"ex",
+				"existing_user"
+			],
+			[
+				"cali",
+				"calibratedRGB"
+			],
+			[
+				"money",
+				"money_len"
+			],
+			[
+				"muscle",
+				"muscle_len"
+			],
+			[
+				"mney",
+				"money_score"
+			],
+			[
+				"mon",
+				"money_len"
+			],
+			[
+				"musc",
+				"muscle"
+			],
+			[
+				"other_",
+				"other_data"
+			],
+			[
+				"new",
+				"new_user"
+			],
+			[
+				"job",
+				"job_time"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"update",
+				"updated_datetime"
+			],
+			[
+				"created",
+				"created_at"
+			],
+			[
+				"impo",
+				"import_user"
+			],
+			[
+				"im",
+				"import_user"
+			],
+			[
+				"data",
+				"database"
+			],
+			[
+				"mone",
+				"money_score"
+			],
+			[
+				"other",
+				"other_type"
+			],
+			[
+				"User",
+				"UserJob"
+			],
+			[
+				"USER",
+				"UserJob"
+			],
+			[
+				"facebook",
+				"facebook_id"
+			],
+			[
+				"time",
+				"timestamp"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 440.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Applications/XAMPP/xamppfiles/htdocs/OpenBuildingServer"
+	],
+	"file_history":
+	[
+		"/Applications/XAMPP/xamppfiles/htdocs/OpenBuildingServer/app/views/home/index.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/OpenBuildingServer/app/config/database.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/OpenBuildingServer/app/config/config.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/OpenBuildingServer/sys/core/Common.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/OpenBuildingServer/app/config/migration.php",
+		"/Users/radu/Desktop/watch_unpair_logs",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch.xcodeproj/project.pbxproj",
+		"/Users/radu/Desktop/Vector-iOS/Vector-Watch.plist",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch 0.1/VWStoreViewController.m",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch 0.1/CloudCommunicationHandler.m",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch 0.1/AppDelegate.h",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch 0.1/VWActivityViewController.m",
+		"/Users/radu/Downloads/logsD.txt",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/js/services.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/js/controllers.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/home.htm",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/library/Acl/Acl.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers/ControllerBase.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers/ReservationsController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/js/app.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/notReady.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/css/app.css",
+		"/Users/radu/Desktop/qwe.txt",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/login.html",
+		"/Users/radu/Desktop/BookAField/api.txt",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/js/constants.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/calendar.htm",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/reports.htm",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/models/FieldReservations.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/config/config.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/views/emailTemplates/confirmation.volt",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/calendar_day.htm",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/models/FieldOwners.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers/AccountController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/js/helpers.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/.gitignore",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/models/Users.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers/FieldsController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/sink.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/models/FieldRules.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/models/FieldSearch.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers/PermissionsController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers/CitiesController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/models/FieldSearchLogs.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/library/Auth/Auth.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/Survify_Client/app/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/view1/view1.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/components/version/version_test.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/view1/view1.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/view2/view2.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/bower_components/angular-mocks/angular-mocks.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/js/angular-bootstrap.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/bower.json",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/bower_components/angular-bootstrap/ui-bootstrap-tpls-0.13.4.min.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/karma.conf.js",
+		"/Users/radu/Downloads/logs.txt",
+		"/Users/radu/Downloads/index.htm",
+		"/Users/radu/Desktop/BookAField/bookafield_site/app/controllers/IndexController.php",
+		"/Users/radu/Desktop/BookAField/bookafield_site/app/config/config.php",
+		"/Users/radu/Desktop/BookAField/bookafield_site/app/views/index/index.volt",
+		"/Users/radu/Desktop/BookAField/bookafield_site/public/css/style.css",
+		"/Users/radu/Desktop/BookAField/bookafield_site/app/views/index.volt",
+		"/Users/radu/Desktop/BookAField/bookafield_site/app/cache/volt/_var_www_html_vokuro_app_views_layouts_emailtemplates.volt.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/FieldsController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/ReservationsController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/library/Acl/Acl.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/ControllerBase.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/library/Auth/Auth.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/Users.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/AccountController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/bookafield.sublime-project",
+		"/Users/radu/Downloads/logs (6).txt",
+		"/Users/radu/Downloads/logs (5).txt",
+		"/Users/radu/Downloads/logs (4).txt",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch 0.1/Main.storyboard",
+		"/Users/radu/Downloads/logs (1).txt",
+		"/Users/radu/Downloads/logs (3).txt",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch 0.1/Info.plist",
+		"/Users/radu/Desktop/logs(1).txt",
+		"/Users/radu/Desktop/p0001.diff",
+		"/Users/radu/Desktop/patch.diff",
+		"/Users/radu/Downloads/logs (2).txt",
+		"/Users/radu/Desktop/BookAField/Untitled.sql",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/FieldReservations.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/ZonesController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/FieldReservationUser.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/Fields.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/FieldSearch.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/UserControlController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/PermissionsController.php",
+		"/Users/radu/Desktop/BookAField/vokuro/app/cache/volt/_var_www_html_vokuro_app_views_users_edit.volt.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/ReservationUser.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/FieldRating.php",
+		"/Users/radu/Desktop/Vector-iOS/Vector Watch 0.1/kernel.vos",
+		"/Users/radu/Desktop/BookAField/vokuro/app/models/EmailConfirmations.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/SessionController.php",
+		"/Users/radu/Desktop/BookAField/vokuro/app/controllers/SessionController.php",
+		"/Users/radu/Desktop/BookAField/vokuro/app/views/privacy/index.volt",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/IndexController.php",
+		"/Users/radu/Desktop/BookAField/bookafield_old/index.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/Zones.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/Cities.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/Counties.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/CitiesController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/config/config.php",
+		"/Users/radu/Desktop/BookAField/bookafield/composer.json",
+		"/Users/radu/Desktop/BookAField/bookafield_old/models/Cities.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/PrivacyController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/TermsController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/EmailConfirmations.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/FailedLogins.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/PasswordChanges.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/Permissions.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/Profiles.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/RememberTokens.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/ResetPasswords.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/models/SuccessLogins.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/library/Auth/Exception.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/library/Mail/Exception.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/library/Mail/Mail.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/config/routes.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/controllers/ProfilesController.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/config/services.php",
+		"/Users/radu/Desktop/BookAField/bookafield/app/config/loader.php",
+		"/Users/radu/Desktop/BookAField/bookafield_old/models/Users.php",
+		"/Users/radu/Desktop/BookAField/vokuro/app/library/Auth/Auth.php",
+		"/Users/radu/Desktop/BookAField/vokuro/app/controllers/AccountController.php"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/js",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/models",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/api/app/controllers",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app/app/views/index_htm_files",
+			"/Applications/XAMPP/xamppfiles/htdocs/bookafield/web-app",
+			"",
+			"/Users/radu/Desktop/BookAField/bookafield_site",
+			"/Users/radu/Desktop/BookAField/bookafield",
+			"/Users/radu/Desktop/BookAField/bookafield/app/models",
+			"/Users/radu/Desktop/BookAField/bookafield",
+			"/Users/radu/Desktop/BookAField",
+			"/Users/radu/Desktop/BookAField/bookafield",
+			"/Users/radu/Desktop/BookAField/bookafield/app/models",
+			"/Users/radu/Desktop/BookAField/bookafield",
+			"/Users/radu/Desktop/BookAField/vokuro",
+			"/Users/radu/Desktop/BookAField/bookafield",
+			"/Users/radu/Desktop/BookAField",
+			"/Users/radu/Desktop/BookAField/vokuro",
+			"/Users/radu/Desktop/BookAField/bookafield/app/controllers",
+			"/Users/radu/Desktop/BookAField/bookafield_old/models",
+			"/Users/radu/Desktop/BookAField/bookafield",
+			"/Users/radu/Desktop/BookAField/vokuro",
+			"<current file>",
+			"",
+			"/Users/radu/projects/LetitGrow_Game",
+			"/Users/radu/projects/LetitGrow_api_php",
+			"/Users/radu/Downloads/heyzap-ads-sdk-8.3.1/unity3d-sdk",
+			"/Users/radu/projects/LetitGrow_Game",
+			"/Users/radu/Downloads/iHasApp-master",
+			"/Users/radu/Desktop/Vector-iOS",
+			"/Applications/XAMPP/xamppfiles/htdocs/Licenta_Andra",
+			"/Users/radu/Desktop/feedstamp/Feedstamp_mobile/www",
+			"/Users/radu/Desktop/feedstamp/Feedstamp_mobile",
+			"/Users/radu/Desktop/feedstamp/Feedstamp_mobile/www",
+			"/Users/radu/Desktop/feedstamp/Feedstamp_mobile/www/controllers",
+			"",
+			"/Users/radu/projects/LetitGrow_Game/Assets/Scripts",
+			"",
+			"/Users/radu/vectoros-tudor",
+			"/Users/radu/Desktop/Vector-iOS",
+			"/Users/radu/vectoros",
+			"/Users/radu/vectoros/os",
+			"/Users/radu/vectoros",
+			"/Users/radu/Desktop/Vector Watch 0.1/Vector Watch 0.1",
+			"/Users/radu/Desktop/Vector Watch 0.1",
+			"/Users/radu/Desktop/Vector Watch 0.1/Vector Watch 0.1",
+			"/Users/radu/vector-android/vector/src/main/java/com/vectorwatch/android",
+			"/Users/radu/Desktop/Vector Watch 0.1/Vector Watch 0.1",
+			"/Users/radu/vector-android/vector/src/main/java/com/vectorwatch/android",
+			"/Users/radu/Desktop/Vector Watch 0.1/Vector Watch 0.1",
+			"/Users/radu/Desktop/Vector Watch 0.1",
+			"/Users/radu/vector-android/vector/src/main/java/com/vectorwatch/android/service/ble",
+			"/Users/radu/vector-android"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"name",
+			"contentpver",
+			"=====",
+			"contentpver",
+			"setStreamCellAtIndexPah",
+			"setApplicationModelCellAtIndexPath",
+			"setLoadingCell",
+			"=====",
+			"====",
+			"<<<",
+			"deviceCompatibility",
+			"====",
+			"isAllowed",
+			"locationChooser",
+			"FieldsService",
+			"AuthService",
+			"showNotReady",
+			"notready",
+			"currentUser",
+			"login",
+			"sink.htm",
+			"245580",
+			"loginInput",
+			"emailc",
+			"reload",
+			"custome",
+			"USER_ROLES",
+			"customer",
+			"he total_players must be an integer h",
+			"17",
+			"getWithPeriodCache",
+			"selectPlayers",
+			"modalInstance",
+			"selectedField",
+			"playerNumbers",
+			"selectPlayers",
+			"create",
+			"Session.crea",
+			"FieldCustomerController",
+			"  };",
+			"getWithPeriodCache",
+			"curentData",
+			"app/",
+			"destroy",
+			"isAuthenticated",
+			"AuthService",
+			"isAuthenticated",
+			"Session",
+			"login.h",
+			"favi",
+			"he field_id do",
+			"begin_timestamp",
+			"fru",
+			"SERVER_BASE_URL",
+			"->is",
+			"isPost",
+			"AuthService",
+			"auth->user",
+			"null",
+			"FieldSearch",
+			"====",
+			"userRoles",
+			"console",
+			"Session",
+			"AuthInterceptor",
+			"};\n",
+			"ModalInstanceCtrl",
+			" \n",
+			"		.",
+			"style",
+			".png",
+			"58@2x",
+			"58.png",
+			"myapp",
+			"myApp",
+			"xr_bgh2",
+			"index_htm_files",
+			"facebook.gif",
+			"feature-gradient",
+			"facebook.gif",
+			"index_htm_files",
+			"$user",
+			"Received new sleep data:",
+			">>>",
+			"downloadUpdateWithCallback",
+			"sendWatchUUIDReq",
+			"confirmota",
+			"sendWatchUUIDReq",
+			"sendtime",
+			"Crashlytics:cra",
+			"START OF APPLICATION with VOS ver",
+			"sleep",
+			"Received new sleep",
+			"received slee",
+			"START OF APPLICATION",
+			"START OF APPLICATION wit",
+			"The signal SIGABRT ",
+			"start of ap",
+			"received new slee",
+			"rebui",
+			"					{",
+			"rashlytics:Cras",
+			"parse err",
+			"_handleNonLaunchSpecificActions",
+			"Crashlytics",
+			"START OF APPLICATION",
+			"is_int",
+			"Sent Activity Info on watch.",
+			"-1",
+			"+1",
+			"+ 1",
+			"nightly",
+			"nightl",
+			" creator_id does not exist o",
+			"new user",
+			"new user()",
+			"					))->",
+			"visibility is required",
+			"->resetPasswords",
+			"->City",
+			"Datetime",
+			"<<<",
+			">>>",
+			"total_pla",
+			"            ||",
+			"FieldController",
+			">>>>",
+			"getmail"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"http://<?php echo $publicUrl; ?>/index_htm_files",
+			"Bookafield\\Mail",
+			"Bookafield\\Auth",
+			"Bookafield\\Acl",
+			"Bookafield\\Controllers",
+			"Bookafield\\Models",
+			"Vokuro\\Models",
+			"Vokuro\\Controllers",
+			"Bookafield\\Models",
+			"Bookafield\\Controllers",
+			":",
+			"\\\"",
+			"'",
+			",",
+			", ",
+			"",
+			"@",
+			"NSString",
+			"#define",
+			" = '%d',",
+			"red=\"0.83921568627450982\" green=\"0.76470588235294112\" blue=\"0.6705882352941176\"",
+			"red=\"0.090196078431372548\" green=\"0.090196078431372548\" blue=\"0.090196078431372548\"",
+			"red=\"1\" green=\"0.71372549019607845\" blue=\"0.0039215686274509803\"",
+			"red=\"0.090196078431372548\" green=\"0.090196078431372548\" blue=\"0.090196078431372548\" alpha=\"1\"",
+			"red=\"1\" green=\"0.71372549019607845\" blue=\"0.0039215686274509803\"",
+			" ",
+			"db",
+			"_",
+			"self."
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "proj.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 262.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
